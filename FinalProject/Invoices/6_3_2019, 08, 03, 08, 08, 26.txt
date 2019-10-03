@@ -1,0 +1,1 @@
+Customer ID: 6, Order ID: 3, Book ISBN: 1003, Quantity: 34, Order Method: Phone, Total Price: $2298.06

@@ -1,0 +1,27 @@
+<?xml version="1.0" standalone="yes"?>
+<User xmlns="http://tempuri.org/User.xsd">
+  <UserLogin>
+    <UserName>HBrown</UserName>
+    <Password>123</Password>
+  </UserLogin>
+  <UserLogin>
+    <UserName>TMoore</UserName>
+    <Password>123Moore</Password>
+  </UserLogin>
+  <UserLogin>
+    <UserName>MBrown</UserName>
+    <Password>123</Password>
+  </UserLogin>
+  <UserLogin>
+    <UserName>JBouchard</UserName>
+    <Password>123Bouchard</Password>
+  </UserLogin>
+  <UserLogin>
+    <UserName>KHoa</UserName>
+    <Password>123Hoa</Password>
+  </UserLogin>
+  <UserLogin>
+    <UserName>PWang</UserName>
+    <Password>123Wang</Password>
+  </UserLogin>
+</User>

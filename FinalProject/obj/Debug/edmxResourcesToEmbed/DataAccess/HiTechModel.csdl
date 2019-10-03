@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HiTechDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Author">
+    <Key>
+      <PropertyRef Name="AuthorID" />
+    </Key>
+    <Property Name="AuthorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Books" Relationship="Self.BookAuthor" FromRole="Authors" ToRole="Books" />
+  </EntityType>
+  <EntityType Name="Book">
+    <Key>
+      <PropertyRef Name="ISBN" />
+    </Key>
+    <Property Name="ISBN" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="UnitPrice" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="YearPublished" Type="Int32" Nullable="false" />
+    <Property Name="QOH" Type="Int32" Nullable="false" />
+    <Property Name="Publisher" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Genre" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__Isbn__4316F928" FromRole="Books" ToRole="Orders" />
+    <NavigationProperty Name="Authors" Relationship="Self.BookAuthor" FromRole="Books" ToRole="Authors" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="OrderID" />
+    </Key>
+    <Property Name="OrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrderType" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Isbn" Type="Int32" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <Property Name="TotalPrice" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <NavigationProperty Name="Book" Relationship="Self.FK__Orders__Isbn__4316F928" FromRole="Orders" ToRole="Books" />
+    <Property Name="CustomerID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Orders__Isbn__4316F928">
+    <End Role="Books" Type="Self.Book" Multiplicity="1" />
+    <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Books">
+        <PropertyRef Name="ISBN" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="Isbn" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BookAuthor">
+    <End Role="Authors" Type="Self.Author" Multiplicity="*" />
+    <End Role="Books" Type="Self.Book" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="HiTechDBEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Authors" EntityType="Self.Author" />
+    <EntitySet Name="Books" EntityType="Self.Book" />
+    <EntitySet Name="Orders" EntityType="Self.Order" />
+    <AssociationSet Name="FK__Orders__Isbn__4316F928" Association="Self.FK__Orders__Isbn__4316F928">
+      <End Role="Books" EntitySet="Books" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="BookAuthor" Association="Self.BookAuthor">
+      <End Role="Authors" EntitySet="Authors" />
+      <End Role="Books" EntitySet="Books" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

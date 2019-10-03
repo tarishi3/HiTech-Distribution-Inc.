@@ -1,0 +1,1 @@
+Customer ID: 5, Order ID: 2, Book ISBN: 1003, Quantity: 2, Order Method: Email, Total Price: $135.18
